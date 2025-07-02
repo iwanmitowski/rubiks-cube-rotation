@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  mssql:
+    container_name: mssql
+    image: mcr.microsoft.com/mssql/server:2017-latest
+    environment:
+      ACCEPT_EULA: 'Y'
+      MSSQL_SA_PASSWORD: 'Admin@123' # load from .env file
+    ports: 
+      - 1433:1433
+    networks:
+      - net
+
+  backend:
+    image: ${DOCKER_REGISTRY-}rubikscuberotation
+    build:
+      context: .
+      dockerfile: RubiksCubeRotation/Dockerfile
+    depends_on:
+      - mssql
+    networks:
+      - net
+
+  frontend:
+    build:
+      context: ../../Frontend
+      dockerfile: Dockerfile
+      target: production
+    ports:
+      - "5173:80"
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    networks:
+      - net
+
+networks:
+  net:

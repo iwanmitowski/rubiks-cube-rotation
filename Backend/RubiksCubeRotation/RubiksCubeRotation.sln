@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RubiksCubeModels", "RubiksC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RubiksCubeTests", "RubiksCubeTests\RubiksCubeTests.csproj", "{11A0540A-7A2E-4930-AF78-D34938C821E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RubiksCubeApiModels", "RubiksCubeApiModels\RubiksCubeApiModels.csproj", "{D7D1C759-F1D5-424D-AEF2-454541786F29}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RubiksCubeApiModels", "RubiksCubeApiModels\RubiksCubeApiModels.csproj", "{D7D1C759-F1D5-424D-AEF2-454541786F29}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{130803F3-EB85-4A30-AB73-2404DDF68E76}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{D7D1C759-F1D5-424D-AEF2-454541786F29}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7D1C759-F1D5-424D-AEF2-454541786F29}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7D1C759-F1D5-424D-AEF2-454541786F29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{130803F3-EB85-4A30-AB73-2404DDF68E76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{130803F3-EB85-4A30-AB73-2404DDF68E76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{130803F3-EB85-4A30-AB73-2404DDF68E76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{130803F3-EB85-4A30-AB73-2404DDF68E76}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
