@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { CubeViewer } from './components/CubeViewer';
-import { CubeControls } from './components/CubeControls';
-import { useCube } from './hooks/useCube';
-import './App.css'; // Import the new CSS file
+import { useState } from "react";
+import { CubeViewer } from "./components/CubeViewer";
+import { CubeControls } from "./components/CubeControls";
+import { useCube } from "./hooks/useCube";
+import "./App.css"; // Import the new CSS file
 
 function App() {
   const {
@@ -19,15 +19,27 @@ function App() {
   const isActionPending = isMoving || isResetting;
 
   if (isLoadingView) {
-    return <div className="App-viewerContainer"><h1>Loading Cube...</h1></div>;
+    return (
+      <div className="App-viewerContainer">
+        <h1>Loading Cube...</h1>
+      </div>
+    );
   }
 
   if (isErrorView) {
-    return <div className="App-viewerContainer"><h1>Error: Could not load cube data.</h1></div>;
+    return (
+      <div className="App-viewerContainer">
+        <h1>Error: Could not load cube data.</h1>
+      </div>
+    );
   }
 
   if (!exploded) {
-    return <div className="App-viewerContainer"><h1>No cube data available.</h1></div>;
+    return (
+      <div className="App-viewerContainer">
+        <h1>No cube data available.</h1>
+      </div>
+    );
   }
 
   return (

@@ -1,4 +1,4 @@
-
+﻿
 using RubiksCubeServices;
 
 namespace RubiksCubeRotation
@@ -17,19 +17,33 @@ namespace RubiksCubeRotation
             builder.Services.AddSwaggerGen();
             builder.Services.AddSingleton<IRubiksCubeService, RubiksCubeService>(); // Transient later
 
-            var app = builder.Build();
-
-            // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
+            var allowedOrigins = builder.Configuration.GetSection("AllowedOrigins").Get<string[]>();
+            if (allowedOrigins is null || allowedOrigins.Length == 0)
             {
-                app.UseSwagger();
-                app.UseSwaggerUI();
+                throw new InvalidOperationException("AllowedOrigins is not configured in appsettings.");
             }
 
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy(name: "AllowSpecificOrigins",
+                    policy =>
+                    {
+                        policy.WithOrigins(allowedOrigins)
+                            .AllowAnyHeader()
+                            .AllowAnyMethod();
+                    });
+            });
+
+            var app = builder.Build();
+
+            app.UseRouting();
+            app.UseSwagger();
+            app.UseSwaggerUI();
+
             app.UseHttpsRedirection();
+            app.UseCors("AllowSpecificOrigins");
 
             app.UseAuthorization();
-
 
             app.MapControllers();
 

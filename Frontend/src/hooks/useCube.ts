@@ -4,12 +4,11 @@ import { Face, Colour } from '../types/api'
 
 type ExplodedView = (Colour | null)[][]
 
-const API_BASE = "https://localhost:44313"!
+const API_BASE = import.meta.env.VITE_API_BASE_URL;
 
 export function useCube() {
   const queryClient = useQueryClient()
 
-  // 1) Query the exploded (net) view
   const explodedQuery = useQuery<ExplodedView, Error>({
     queryKey: ['cube', 'exploded'],
     queryFn: async () => {
@@ -22,7 +21,6 @@ export function useCube() {
     refetchOnWindowFocus: false,
   })
 
-  // 2) Mutation to reset the cube
   const resetMutation = useMutation<void, Error, void>({
     mutationFn: async () => {
       await axios.post<void>(`${API_BASE}/api/rubiksCube/reset`);
@@ -32,7 +30,6 @@ export function useCube() {
     },
   })
 
-  // 3) Mutation to rotate one face
   const moveMutation = useMutation<
     void,               // TData
     Error,              // TError
