@@ -88,6 +88,7 @@ You must have the following software installed:
    git clone https://github.com/iwanmitowski/rubiks-cube-rotation.git
    cd Frontend
    npm install
+   npm run dev
    cd ..
    cd Backend
    cd RubiksCubeRotation
