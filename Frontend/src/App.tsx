@@ -1,35 +1,61 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from 'react';
+import { CubeViewer } from './components/CubeViewer';
+import { CubeControls } from './components/CubeControls';
+import { useCube } from './hooks/useCube';
+import './App.css'; // Import the new CSS file
 
 function App() {
-  const [count, setCount] = useState(0)
+  const {
+    exploded,
+    isLoadingView,
+    isErrorView,
+    resetCube,
+    isResetting,
+    moveCube,
+    isMoving,
+  } = useCube();
+
+  const [isExplodedChecked, setIsExplodedChecked] = useState(false);
+  const isActionPending = isMoving || isResetting;
+
+  if (isLoadingView) {
+    return <div className="App-viewerContainer"><h1>Loading Cube...</h1></div>;
+  }
+
+  if (isErrorView) {
+    return <div className="App-viewerContainer"><h1>Error: Could not load cube data.</h1></div>;
+  }
+
+  if (!exploded) {
+    return <div className="App-viewerContainer"><h1>No cube data available.</h1></div>;
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="App">
+      <div className="App-viewerContainer">
+        <CubeViewer view={exploded} exploded={isExplodedChecked} />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+
+      <div className="App-controlsContainer">
+        <h2 className="App-title">Controls</h2>
+        <CubeControls
+          onMove={(face, clockwise) => moveCube({ face, clockwise })}
+          onReset={() => resetCube()}
+          isDisabled={isActionPending}
+        />
+        <hr className="App-divider" />
+        <label className="App-checkboxLabel">
+          <input
+            type="checkbox"
+            className="App-checkbox"
+            checked={isExplodedChecked}
+            onChange={(e) => setIsExplodedChecked(e.target.checked)}
+          />
+          Exploded View
+        </label>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;

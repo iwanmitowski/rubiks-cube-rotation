@@ -1,42 +1,55 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+.App {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  width: 100vw;
+  align-items: stretch;
+  background: #f4f4f4;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.App-viewerContainer {
+  flex: 1;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: sans-serif;
+  color: #555;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.App-controlsContainer {
+  width: 220px;
+  padding: 20px;
+  border-left: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+  background: white;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.05);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.App-title {
+  font-family: sans-serif;
+  color: #333;
 }
 
-.card {
-  padding: 2em;
+.App-divider {
+  width: 100%;
+  margin: 20px 0;
+  border: none;
+  border-top: 1px solid #eee;
 }
 
-.read-the-docs {
-  color: #888;
+.App-checkboxLabel {
+  font-family: sans-serif;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  color: #333
+}
+
+.App-checkbox {
+  margin-right: 8px;
+  transform: scale(1.2);
 }

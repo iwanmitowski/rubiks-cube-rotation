@@ -1,0 +1,48 @@
+.CubeControls-container {
+  padding: 10px;
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+.CubeControls-group {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.CubeControls-button {
+  min-width: 45px;
+  margin: 4px;
+  padding: 10px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #f0f0f0;
+  text-align: center;
+  transition: background-color 0.2s ease, opacity 0.2s ease-in-out;
+  color: #333;
+}
+
+.CubeControls-button:hover:not(:disabled) {
+  background-color: #e0e0e0;
+}
+
+.CubeControls-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.CubeControls-button--reset {
+  width: 100%;
+  margin-top: 20px;
+  background-color: #e74c3c;
+  color: white;
+  border-color: #c0392b;
+}
+
+.CubeControls-button--reset:hover:not(:disabled) {
+  background-color: #c0392b;
+}
