@@ -1,4 +1,6 @@
 ﻿
+using RubiksCubeRotation.Middlewares;
+
 using RubiksCubeServices;
 
 namespace RubiksCubeRotation
@@ -35,6 +37,8 @@ namespace RubiksCubeRotation
             });
 
             var app = builder.Build();
+
+            app.UseMiddleware<RequestLoggingMiddleware>();
 
             app.UseRouting();
             app.UseSwagger();
